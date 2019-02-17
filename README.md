@@ -8,7 +8,7 @@
 - Web: [Cocoan lab](http://cocoanlab.github.io)
 - E-mail: waniwoo@skku.edu
 - Class: Tues 3:00-5:45 at 86126
-- Office hours: You can email me!
+- Office hours: Please email me!
 
 <br>
 
@@ -76,8 +76,8 @@ Week 9 (4/30)    | Bayesian methods  | Ch. 11   |
 Week 10 (5/7)    | Analyzign categorical and continous variables  | Ch. 12-13   |   
 Week 11 (5/14\*)    | GLM, T-test, ANOVA  | Ch. 14-15   |   
 Week 12 (5/21)    | Mediation analysis, multivariate methods  | -   |   
-Week 13 (5/28\*)    | Mediation analysis, multivariate methods  | -   |   
-Week 14 (6/4\*)    | Machine learning  | -   |   
+Week 13 (5/28\*)    | Machine learning | -   |   
+Week 14 (6/4\*)    | Reproducible research  | Ch. 17   |   
 Week 15 (6/11\*)    | No class  | -   |   
 Week 16 (6/18)    | Final  | -   |   
 
