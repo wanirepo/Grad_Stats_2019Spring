@@ -81,7 +81,7 @@ Week 14 (6/4\*)    | Reproducible research  | Ch. 17   |
 Week 15 (6/11\*)    | No class  | -   |   
 Week 16 (6/18)    | Final  | -   |   
 
-_Note._ <br> \* I will be out of office on 3/26, 5/14, 5/28, 6/4, 6/11 for seminars and conferences. We should have three make-up classes for 5/14, 5/28, and 6/4. \*\*Assignments will be determined later. Weekly plan described above can be adjusted as our class develops. 
+_Note._ <br> \* I will be out of office on 3/26, 5/14, 5/28, 6/4, 6/11 for seminars and conferences. We should have three make-up classes for 5/14, 5/28, and 6/4. \*\*Assignments will be announced later. Weekly plan described above can be adjusted as our class develops. 
 
 
 
