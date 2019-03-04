@@ -64,7 +64,7 @@ Analyzing data from your lab using the statitical methods you learned in the cla
 
 Week  | Topic | Chapter | Assignment\*\*\*
 ------| ----- | ------- | ----------
-Week 1 (3/5\*)  | Course overview,  |     |
+Week 1 (3/5\*)  | Course overview, Statistics?  |     |
 Week 2 (3/12\*)    | Data, Data visualization  | Ch. 1-2   |   
 Week 3 (3/19)    | Probability, distribution | Ch. 3-4   |   
 Week 4 (3/26\*\*)    | Model and data summary | Ch. 5-6   |   
