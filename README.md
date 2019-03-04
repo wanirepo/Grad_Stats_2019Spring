@@ -51,7 +51,7 @@ This course will combine lectures with some practical hands-on experience of sta
 
 Absolute evaluation will be used for the class.
 
-1. Attendance (40%)
+1. Attendance (40%; but I won't be able to check the attendance every time)
 2. Assignments (30%)
 3. Projects (30%)
 
@@ -62,26 +62,26 @@ Analyzing data from your lab using the statitical methods you learned in the cla
 
 ## Schedule
 
-Week  | Topic | Chapter | Assignment\**
+Week  | Topic | Chapter | Assignment\*\*\*
 ------| ----- | ------- | ----------
-Week 1 (3/5)  | Course overview, Data, Data visualization | Ch. 1-2    |
-Week 2 (3/12)    | Probability, distribution  | Ch. 3-4   |   
-Week 3 (3/19)    | Model and data summary | Ch. 5-6   |   
-Week 4 (3/26\*)    | No class | -   |   
+Week 1 (3/5\*)  | Course overview,  |     |
+Week 2 (3/12\*)    | Data, Data visualization  | Ch. 1-2   |   
+Week 3 (3/19)    | Probability, distribution | Ch. 3-4   |   
+Week 4 (3/26\*\*)    | Model and data summary | Ch. 5-6   |   
 Week 5 (4/2)    | Sampling, Central limit theorem, Confidence interval | Ch. 7   |   
 Week 6 (4/9)    | Resampling  | Ch. 8   |   
 Week 7 (4/16)    | Hypothesis testing: confidence interval, effect size, power  | Ch. 9-10   |   
 Week 8 (4/23)    | Mid-term  | -   |   
 Week 9 (4/30)    | Bayesian methods  | Ch. 11   |   
 Week 10 (5/7)    | Analyzign categorical and continous variables  | Ch. 12-13   |   
-Week 11 (5/14\*)    | GLM, T-test, ANOVA  | Ch. 14-15   |   
+Week 11 (5/14\*\*)    | GLM, T-test, ANOVA  | Ch. 14-15   |   
 Week 12 (5/21)    | Mediation analysis, multivariate methods  | -   |   
-Week 13 (5/28\*)    | Machine learning | -   |   
-Week 14 (6/4\*)    | Reproducible research  | Ch. 17   |   
-Week 15 (6/11\*)    | No class  | -   |   
+Week 13 (5/28\*\*)    | Machine learning | -   |   
+Week 14 (6/4\*\*)    | Reproducible research  | Ch. 17   |   
+Week 15 (6/11\*\*)    | No class  | -   |   
 Week 16 (6/18)    | Final  | -   |   
 
-_Note._ <br> \* I will be out of office on 3/26, 5/14, 5/28, 6/4, 6/11 for seminars and conferences. We should have three make-up classes for 5/14, 5/28, and 6/4. \*\*Assignments will be announced later. Weekly plan described above can be adjusted as our class develops. 
+_Note._ <br> \*We have important seminars at 4PM on these dates. We will end the class early. \*\*I will be out of office on 3/26, 5/14, 5/28, 6/4, 6/11 for seminars and conferences. We should have three make-up classes for 3/26, 5/14, 5/28, and 6/4 (we need to decide the alternative class time). \*\*\*Assignments will be announced later. Weekly plan described above can be adjusted as our class develops. 
 
 
 
