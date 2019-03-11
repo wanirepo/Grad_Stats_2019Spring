@@ -1,0 +1,33 @@
+---
+title: "Ch.2 Working with Data"
+output: html_notebook
+---
+
+[R Markdown](http://rmarkdown.rstudio.com) Notebook is a very useful tool to share your codes and results. When you execute code within the notebook, the results appear beneath the code. Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+These are codes from the textbook:
+
+```{r}
+# create variable containing responses to migraine question
+everHadMigraine <- c('Yes','No','Yes','No','No','No','Yes','No','No','No') 
+everHadMigraine
+
+# create truth values from everHadMigraine variable
+everHadMigraineTF <- everHadMigraine == 'Yes' 
+everHadMigraineTF
+
+# evaluate truth of a set of assertions
+# 1 is equal to TRUE - should return TRUE
+TRUE == 1
+# 0 is equal to FALSE - should return TRUE
+FALSE == 0
+# 0 is equal to true - should return FALSE
+TRUE == 0
+
+# create integer values from truth values using as.integer()
+everHadMigraineBinary <- as.integer(everHadMigraineTF) 
+everHadMigraineBinary
+```
+
+More instructions for R Markdown: Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*. When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file).The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
