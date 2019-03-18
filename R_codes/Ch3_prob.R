@@ -1,0 +1,121 @@
+# Initialize -------------
+# need some packages
+# e.g.,
+# install.packages('readr') 
+
+library(dplyr)
+library(reshape2)
+library(tidyr)
+library(ggplot2)
+library(pander)
+library(readr)
+library(NHANES)
+
+panderOptions('round',3)
+panderOptions('digits',7)
+
+# Frequency -------------
+
+SFrain <- read_csv("data/SanFranciscoRain/1329219.csv")
+# create a new variable indicating whether it rained on each day
+
+SFrain <-
+  SFrain %>%
+  mutate(rainToday = as.integer(PRCP > 0))
+
+SFrain_summary <- 
+  SFrain %>% 
+  summarize(
+  nRainyDays = sum(rainToday), 
+  nDaysMeasured = n(),
+  pRainInSF = nRainyDays / nDaysMeasured
+) 
+
+pander(SFrain_summary)
+
+# compute cumulative probability distribution for Curry's free throws ----
+
+tibble(
+  numSuccesses = seq(0, 4)
+) %>%
+  mutate(
+    probability = pbinom(numSuccesses, size = 4, prob = 0.91)
+  ) %>% 
+  pander()
+
+# Summarize NHANES data for diabetes and physical activity ----
+
+# drop duplicated IDs within the NHANES dataset
+NHANES_diabetes_activity <- 
+  NHANES %>% 
+  distinct(ID, .keep_all = TRUE) %>% 
+  drop_na(PhysActive, Diabetes)
+
+pander('Summary data for diabetes')
+NHANES_diabetes_activity %>%
+  count(Diabetes) %>% 
+  mutate(
+    prob = n / sum(n)
+  ) %>% 
+  pander()
+
+pander('Summary data for physical activity')
+NHANES_diabetes_activity %>%
+  count(PhysActive) %>%
+  mutate(
+    prob = n / sum(n)
+  ) %>% 
+  pander()
+
+# compute joint probabilities for diabetes and physical activity ----
+
+NHANES_diabetes_stats_by_activity <- 
+  NHANES_diabetes_activity %>% 
+  count(Diabetes, PhysActive) %>% 
+  mutate(
+    prob = n / sum(n)
+  ) 
+pander(NHANES_diabetes_stats_by_activity)
+
+# compute conditional probability p(diabetes|inactive) -----
+
+P_inactive <- 
+  NHANES_diabetes_activity %>% 
+  summarise(
+    mean(PhysActive == "No")
+  ) %>% 
+  pull()
+
+P_diabetes_and_inactive <-
+  NHANES_diabetes_stats_by_activity %>% 
+  dplyr::filter(Diabetes == "Yes", PhysActive == "No") %>% 
+  pull(prob)
+
+P_diabetes_given_inactive <-
+  P_diabetes_and_inactive / P_inactive
+
+P_diabetes_given_inactive
+
+# compute probabilities for mental health and physical activity -----
+NHANES_adult <- 
+  NHANES %>%
+  dplyr::filter(
+    Age >= 18,
+    !is.na(PhysActive),
+    !is.na(DaysMentHlthBad)
+  ) %>% 
+  mutate(badMentalHealth = DaysMentHlthBad > 7)
+
+NHANES_MentalHealth_summary <-
+  NHANES_adult %>%
+  summarize(badMentalHealth = mean(badMentalHealth))
+
+pander(NHANES_MentalHealth_summary)
+
+NHANES_MentalHealth_by_PhysActive <-
+  NHANES_adult %>%
+  group_by(PhysActive) %>%
+  summarize(badMentalHealth = mean(badMentalHealth)) 
+
+pander(NHANES_MentalHealth_by_PhysActive)
+

@@ -243,49 +243,44 @@ $(document).ready(function () {
 <p>These are codes from the textbook:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjcmVhdGUgdmFyaWFibGUgY29udGFpbmluZyByZXNwb25zZXMgdG8gbWlncmFpbmUgcXVlc3Rpb25cbmV2ZXJIYWRNaWdyYWluZSA8LSBjKCdZZXMnLCdObycsJ1llcycsJ05vJywnTm8nLCdObycsJ1llcycsJ05vJywnTm8nLCdObycpIFxuZXZlckhhZE1pZ3JhaW5lXG5cbmBgYCJ9 -->
-<pre class="r"><code># create variable containing responses to migraine question
-everHadMigraine &lt;- c('Yes','No','Yes','No','No','No','Yes','No','No','No') 
-everHadMigraine
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjcmVhdGUgdmFyaWFibGUgY29udGFpbmluZyByZXNwb25zZXMgdG8gbWlncmFpbmUgcXVlc3Rpb25cbmV2ZXJIYWRNaWdyYWluZSA8LSBjKCdZZXMnLCdObycsJ1llcycsJ05vJywnTm8nLCdObycsJ1llcycsJ05vJywnTm8nLCdObycpIFxuZXZlckhhZE1pZ3JhaW5lXG5cbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # create variable containing responses to migraine question everHadMigraine &lt;- c(‘Yes’,‘No’,‘Yes’,‘No’,‘No’,‘No’,‘Yes’,‘No’,‘No’,‘No’) everHadMigraine</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIlllc1wiIFwiTm9cIiAgXCJZZXNcIiBcIk5vXCIgIFwiTm9cIiAgXCJOb1wiICBcIlllc1wiIFwiTm9cIiAgXCJOb1wiICBcIk5vXCIgXG4ifQ== -->
-<pre><code> [1] &quot;Yes&quot; &quot;No&quot;  &quot;Yes&quot; &quot;No&quot;  &quot;No&quot;  &quot;No&quot;  &quot;Yes&quot; &quot;No&quot;  &quot;No&quot;  &quot;No&quot; </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcXFllc1xcIFxcTm9cXCAgXFxZZXNcXCBcXE5vXFwgIFxcTm9cXCAgXFxOb1xcICBcXFllc1xcIFxcTm9cXCAgXFxOb1xcICBcXE5vXFwgXG4ifQ== -->
+<pre><code> [1] \Yes\ \No\  \Yes\ \No\  \No\  \No\  \Yes\ \No\  \No\  \No\ </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjcmVhdGUgdHJ1dGggdmFsdWVzIGZyb20gZXZlckhhZE1pZ3JhaW5lIHZhcmlhYmxlXG5ldmVySGFkTWlncmFpbmVURiA8LSBldmVySGFkTWlncmFpbmUgPT0gJ1llcycgXG5ldmVySGFkTWlncmFpbmVURlxuYGBgIn0= -->
-<pre class="r"><code># create truth values from everHadMigraine variable
-everHadMigraineTF &lt;- everHadMigraine == 'Yes' 
-everHadMigraineTF</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjcmVhdGUgdHJ1dGggdmFsdWVzIGZyb20gZXZlckhhZE1pZ3JhaW5lIHZhcmlhYmxlXG5ldmVySGFkTWlncmFpbmVURiA8LSBldmVySGFkTWlncmFpbmUgPT0gJ1llcycgXG5ldmVySGFkTWlncmFpbmVURlxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r # create truth values from everHadMigraine variable everHadMigraineTF &lt;- everHadMigraine == ‘Yes’ everHadMigraineTF</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgVFJVRSBGQUxTRSAgVFJVRSBGQUxTRSBGQUxTRSBGQUxTRSAgVFJVRSBGQUxTRSBGQUxTRSBGQUxTRVxuIn0= -->
 <pre><code> [1]  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBldmFsdWF0ZSB0cnV0aCBvZiBhIHNldCBvZiBhc3NlcnRpb25zXG4jIDEgaXMgZXF1YWwgdG8gVFJVRSAtIHNob3VsZCByZXR1cm4gVFJVRVxuVFJVRSA9PSAxXG5gYGAifQ== -->
-<pre class="r"><code># evaluate truth of a set of assertions
-# 1 is equal to TRUE - should return TRUE
-TRUE == 1</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBldmFsdWF0ZSB0cnV0aCBvZiBhIHNldCBvZiBhc3NlcnRpb25zXG4jIDEgaXMgZXF1YWwgdG8gVFJVRSAtIHNob3VsZCByZXR1cm4gVFJVRVxuVFJVRSA9PSAxXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # evaluate truth of a set of assertions # 1 is equal to TRUE - should return TRUE TRUE == 1</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
 <pre><code>[1] TRUE</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyAwIGlzIGVxdWFsIHRvIEZBTFNFIC0gc2hvdWxkIHJldHVybiBUUlVFXG5GQUxTRSA9PSAwXG5gYGAifQ== -->
-<pre class="r"><code># 0 is equal to FALSE - should return TRUE
-FALSE == 0</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyAwIGlzIGVxdWFsIHRvIEZBTFNFIC0gc2hvdWxkIHJldHVybiBUUlVFXG5GQUxTRSA9PSAwXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r # 0 is equal to FALSE - should return TRUE FALSE == 0</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
 <pre><code>[1] TRUE</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyAwIGlzIGVxdWFsIHRvIHRydWUgLSBzaG91bGQgcmV0dXJuIEZBTFNFXG5UUlVFID09IDBcbmBgYCJ9 -->
-<pre class="r"><code># 0 is equal to true - should return FALSE
-TRUE == 0</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyAwIGlzIGVxdWFsIHRvIHRydWUgLSBzaG91bGQgcmV0dXJuIEZBTFNFXG5UUlVFID09IDBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # 0 is equal to true - should return FALSE TRUE == 0</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIEZBTFNFXG4ifQ== -->
 <pre><code>[1] FALSE</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjcmVhdGUgaW50ZWdlciB2YWx1ZXMgZnJvbSB0cnV0aCB2YWx1ZXMgdXNpbmcgYXMuaW50ZWdlcigpXG5ldmVySGFkTWlncmFpbmVCaW5hcnkgPC0gYXMuaW50ZWdlcihldmVySGFkTWlncmFpbmVURikgXG5ldmVySGFkTWlncmFpbmVCaW5hcnlcbmBgYCJ9 -->
-<pre class="r"><code># create integer values from truth values using as.integer()
-everHadMigraineBinary &lt;- as.integer(everHadMigraineTF) 
-everHadMigraineBinary</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjcmVhdGUgaW50ZWdlciB2YWx1ZXMgZnJvbSB0cnV0aCB2YWx1ZXMgdXNpbmcgYXMuaW50ZWdlcigpXG5ldmVySGFkTWlncmFpbmVCaW5hcnkgPC0gYXMuaW50ZWdlcihldmVySGFkTWlncmFpbmVURikgXG5ldmVySGFkTWlncmFpbmVCaW5hcnlcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r # create integer values from truth values using as.integer() everHadMigraineBinary &lt;- as.integer(everHadMigraineTF) everHadMigraineBinary</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAxIDAgMSAwIDAgMCAxIDAgMCAwXG4ifQ== -->
 <pre><code> [1] 1 0 1 0 0 0 1 0 0 0</code></pre>
