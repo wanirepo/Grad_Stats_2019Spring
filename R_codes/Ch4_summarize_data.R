@@ -1,6 +1,5 @@
-library(tidyverse)
-library(cowplot)
 library(pander)
+library(cowplot)
 
 options(digits = 2)
 
@@ -71,6 +70,26 @@ NHANES %>%
   ) %>% 
   pander()
 
+# setup breaks for sleep variable ----
+scalex <- 
+  scale_x_continuous(
+    breaks = c(
+      min(NHANES$SleepHrsNight, na.rm = TRUE):max(NHANES$SleepHrsNight, na.rm = TRUE)
+    )
+  ) # set the break points in the graph 
+
+p1 <- SleepHrsNight_data_filtered %>% 
+  ggplot(aes(SleepHrsNight)) +
+  geom_histogram(binwidth = 1) +
+  scalex
+
+p2 <- SleepHrsNight_data_filtered %>% 
+  ggplot(aes(SleepHrsNight)) +
+  geom_histogram(aes(y = ..density..), binwidth = 1) +
+  scalex
+
+plot_grid(p1,p2)
+
 # create cumulative frequency distribution of SleepHrsNight data ----
 
 SleepHrsNight_cumulative <- 
@@ -82,6 +101,51 @@ SleepHrsNight_cumulative <-
   mutate(CumulativeFrequency = cumsum(AbsoluteFrequency))
 
 pander(SleepHrsNight_cumulative)
+
+SleepHrsNight_data_filtered <- 
+  NHANES %>%
+  drop_na(SleepHrsNight) %>%
+  dplyr::select(SleepHrsNight)
+
+
+# draw cumulative plots ----
+
+p1 <- SleepHrsNight_cumulative %>% 
+  ggplot(aes(SleepHrsNight, AbsoluteFrequency)) +
+  geom_line(color = "red", size = 1.25) +
+  geom_line(
+    aes(SleepHrsNight, CumulativeFrequency), 
+    color = "blue", 
+    size = 1.25
+  ) +
+  scalex +
+  labs(y = "Frequency")
+
+SleepHrsNight_cumulative <- 
+  NHANES %>%
+  drop_na(SleepHrsNight) %>%
+  dplyr::select(SleepHrsNight) %>%
+  group_by(SleepHrsNight) %>%
+  summarize(AbsoluteFrequency = n()) %>%
+  mutate(
+    RelativeFrequency = AbsoluteFrequency / sum(AbsoluteFrequency),
+    CumulativeDensity = cumsum(RelativeFrequency)
+  )
+
+p2 <- SleepHrsNight_cumulative %>% 
+  ggplot(aes(SleepHrsNight, RelativeFrequency)) +
+  geom_line(color = "red", size = 1.25) +
+  geom_line(
+    aes(SleepHrsNight, CumulativeDensity), 
+    color = "blue", 
+    size = 1.25) +
+  scalex +
+  labs(
+    y = "Proportion"
+  )
+
+plot_grid(p1,p2)
+
 
 # take a slice of a few values from the full data frame ----
 NHANES_adult <-
