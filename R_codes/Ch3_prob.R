@@ -15,7 +15,7 @@ panderOptions('round',3)
 panderOptions('digits',7)
 
 # Frequency -------------
-
+setwd('/Users/clinpsywoo/Dropbox/github/psych10-book')
 SFrain <- read_csv("data/SanFranciscoRain/1329219.csv")
 # create a new variable indicating whether it rained on each day
 
