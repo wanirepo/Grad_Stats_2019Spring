@@ -1,0 +1,215 @@
+---
+title: "Ch 5. Fitting Models"
+output: html_notebook
+---
+
+Initial setting
+
+```{r}
+library(tidyverse)
+library(NHANES)
+library(cowplot)
+library(mapproj)
+library(pander)
+library(modelr)
+
+panderOptions('round',2)
+panderOptions('digits',7)
+
+options(digits = 2)
+set.seed(123456) # set random seed to exactly replicate results
+
+```
+
+
+**Statistical modeling: An example**
+
+```{r}
+# drop duplicated IDs within the NHANES dataset
+NHANES <- 
+  NHANES %>% 
+  dplyr::distinct(ID, .keep_all = TRUE)
+
+# select the appropriate children with good height measurements
+
+NHANES_child <- 
+  NHANES %>%
+  drop_na(Height) %>%
+  subset(Age < 18)
+
+NHANES_child %>% 
+  ggplot(aes(Height)) + 
+  geom_histogram(bins = 100)
+```
+
+
+** Mode **
+
+```{r}
+# create function to compute mode and apply to child height data from NHANES
+getmode <- function(v) {
+  uniqv <- unique(v)
+  return(uniqv[which.max(tabulate(match(v, uniqv)))])
+}
+
+height_mode <- getmode(NHANES_child$Height)
+paste("mode of children's height from NHANES:", height_mode)
+
+error_mode <- NHANES_child$Height - height_mode
+sprintf("average error from mode (cm): %0.2f", mean(error_mode))
+```
+
+
+** Mean **
+
+```{r}
+# compute error from mean
+error_mean <- NHANES_child$Height - mean(NHANES_child$Height)
+sprintf("average error for mean (cm): %e", mean(error_mean))
+```
+
+```{r meanError, echo=FALSE,fig.cap="Distribution of errors from the mean.",fig.width=4,fig.height=4,out.height='50%'}
+# compute error compared to the mean and plot histogram
+
+ggplot(NULL, aes(error_mean)) +
+  geom_histogram(bins = 100) + 
+  xlim(-60, 60) +
+  labs(
+    x = "Error when predicting height with mean"
+  )
+```
+
+** RMSE **
+
+```{r}
+# compute and print RMSE for mean and mode
+rmse_mean <- sqrt(mean(error_mean**2))
+
+rmse_mode <- sqrt(mean(error_mode**2))
+
+print(paste("Mode: root mean squared error (centimeters):", rmse_mode))
+print(paste("Mean: root mean squared error (centimeters):", rmse_mean))
+```
+
+** MODELS **
+
+```{r}
+p1 <- NHANES_child %>% 
+  ggplot(aes(x = Age, y = Height)) +
+  geom_point(position = "jitter",size=0.05) +
+  scale_x_continuous(breaks = seq.int(0, 20, 2)) +
+  ggtitle('A: original data')
+
+lmResultHeightOnly <- lm(Height ~ Age + 0, data=NHANES_child)
+rmse_heightOnly <- sqrt(mean(lmResultHeightOnly$residuals**2))
+
+p2 <- NHANES_child %>% 
+  ggplot(aes(x = Age, y = Height)) +
+  geom_point(position = "jitter",size=0.05) +
+  scale_x_continuous(breaks = seq.int(0, 20, 2)) + 
+  annotate('segment',x=0,xend=max(NHANES_child$Age),
+           y=0,yend=max(lmResultHeightOnly$fitted.values),
+           color='blue',lwd=1) + 
+  ggtitle('B: age')
+
+p3 <- NHANES_child %>% 
+  ggplot(aes(x = Age, y = Height)) +
+  geom_point(position = "jitter",size=0.05) +
+  scale_x_continuous(breaks = seq.int(0, 20, 2)) + 
+  geom_smooth(method='lm',se=FALSE) + 
+  ggtitle('C: age + constant')
+
+p4 <- NHANES_child %>% 
+  ggplot(aes(x = Age, y = Height)) +
+  geom_point(aes(colour = factor(Gender)), 
+             position = "jitter", 
+             alpha = 0.8,
+             size=0.05) +
+  geom_smooth(method='lm',aes(group = factor(Gender), 
+                              colour = factor(Gender))) + 
+  theme(legend.position = c(0,0.8)) + 
+  ggtitle('D: age + constant + gender')
+
+plot_grid(p1,p2,p3,p4,ncol=2)
+```
+
+** Model with age **
+
+```{r}
+# find the best fitting model to predict height given age
+model_age <- lm(Height ~ Age, data = NHANES_child)
+
+sprintf(
+  "model: height = %0.2f + %0.2f*Age",
+  model_age$coefficients[1],
+  model_age$coefficients[2]
+)
+
+# the add_predictions() function uses the fitted model to add the predicted values for each person to our dataset
+NHANES_child <-
+  NHANES_child %>% 
+  add_predictions(model_age, var = "predicted_age") %>% 
+  mutate(
+    error_age = Height - predicted_age #calculate each individual's difference from the predicted value
+  )
+
+rmse_age <- 
+  NHANES_child %>% 
+  summarise(
+    sqrt(mean((error_age)**2)) #calculate the root mean squared error
+  ) %>% 
+  pull()
+
+sprintf("root mean squared error: %0.2f", rmse_age)
+```
+
+** Model with age and gender **
+
+```{r}
+# compute model fit for modeling with age and gender
+
+model_age_gender <- lm(Height ~ Age + Gender, data = NHANES_child)
+
+rmse_age_gender <-
+  NHANES_child %>% 
+  add_predictions(model_age_gender, var = "predicted_age_gender") %>% 
+  summarise(
+    sqrt(mean((Height - predicted_age_gender)**2))
+  ) %>% 
+  pull()
+
+sprintf(
+  "model: height = %0.2f + %0.2f*Age + %0.2f*Gender",
+  model_age_gender$coefficients[1],
+  model_age_gender$coefficients[2],
+  model_age_gender$coefficients[3]
+)
+
+print(sprintf("root mean squared error: %0.2f", rmse_age_gender))
+```
+
+** ERROR PLOT FOR DIFFERENT MODELS **
+
+```{r}
+error_df <- #build a dataframe using the function tribble()
+  tribble(
+    ~model, ~error,
+    "mode", rmse_mode,
+    "mean", rmse_mean,
+    "mean + age", rmse_age,
+    "mean + age + gender", rmse_age_gender
+  ) %>% 
+  mutate(
+    RMSE = sqrt(error)
+  )
+
+error_df %>% 
+  ggplot(aes(x = model, y = RMSE)) +
+  geom_col() +
+  scale_x_discrete(limits = c("mode", "mean", "mean + age", "mean + age + gender")) +
+  labs(
+    y = "root mean squared error"
+  ) + 
+  coord_flip()
+```
+

@@ -1,0 +1,52 @@
+---
+title: "Ch 6. Data visualization"
+output: html_notebook
+---
+
+Initial setting
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(cowplot)
+library(pander)
+library(NHANES)
+
+# drop duplicated IDs within the NHANES dataset
+NHANES=NHANES %>% dplyr::distinct(ID,.keep_all=TRUE)
+
+NHANES$isChild <- NHANES$Age<18
+
+NHANES_adult=NHANES %>%
+  drop_na(Height) %>%
+  subset(subset=Age>=18)
+
+```
+
+
+**try ggplot**
+```{r}
+NHANES_sample <- 
+  NHANES_adult %>%
+  drop_na(Weight, Gender) %>% #remove rows (individuals) with missing values for Weight and Gender
+  sample_n(150) #take a random sample of n = 150 rows (individuals)
+```
+
+```{r}
+NHANES_sample %>%
+  ggplot(aes(x = Height, y = Weight))
+```
+
+```{r}
+NHANES_sample %>% 
+  ggplot(aes(x = Height, y = Weight)) +
+  geom_point()
+```
+
+```{r}
+NHANES_sample %>% 
+  ggplot(aes(x = Height, y = Weight, color = Gender)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
