@@ -74,11 +74,11 @@ Week 7 (4/16)    | Hypothesis testing: confidence interval, effect size, power  
 Week 8 (4/23)    | Mid-term  | -   |   
 Week 9 (4/30)    | Bayesian methods  | Ch. 11   |   
 Week 10 (5/7)    | Analyzign categorical and continous variables  | Ch. 12-13   |   
-Week 11 (5/14\*\*)    | GLM, T-test, ANOVA  | Ch. 14-15   |   
-Week 12 (5/21)    | Mediation analysis, multivariate methods  | -   |   
-Week 13 (5/28\*\*)    | Machine learning | -   |   
-Week 14 (6/4\*\*)    | Reproducible research  | Ch. 17   |   
-Week 15 (6/11\*\*)    | No class  | -   |   
+Week 11 (5/14\*\*)    | No class  |  -  |   
+Week 12 (5/21)    | GLM, T-test, ANOVA  | Ch. 14-15  |   
+Week 13 (5/28\*\*)    | Mediation analysis, multivariate methods | -   |   
+Week 14 (6/4\*\*)    | Machine learning  | -   |   
+Week 15 (6/11\*\*)    | Reproducible research  | Ch. 17   |   
 Week 16 (6/18)    | Final  | -   |   
 
 _Note._ <br> \*We have important seminars at 4PM on these dates. We will end the class early. \*\*I will be out of office on 3/26, 5/14, 5/28, 6/4, 6/11 for seminars and conferences. We should have three make-up classes for 3/26, 5/14, 5/28, and 6/4 (we need to decide the alternative class time). \*\*\*Assignments will be announced later. Weekly plan described above can be adjusted as our class develops. 
